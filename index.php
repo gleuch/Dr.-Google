@@ -66,8 +66,8 @@ if ($route == 'search') {
     // }
 
   } else {
-    $find = array('/(src=[\'"]?)(\/)/i', '/(href=[\'"]?)(\/)/i', "/(\/\")/", "/http\:\/\/www\.google\.com\/images\/logo_sm\.gif/i", "/width=150 height=55/i", '/Google/');
-    $replace = array('\1http://www.google.com\2', '\1http://www.google.com\2', '\1http://www.google.com', '/images/logo_sm.gif', "width=174 height=55", 'Dr. Google');
+    $find = array('/(src=[\'"]?)(\/)/i', '/(href=[\'"]?)(\/)/i', "/(\")(\/)/", "/(\(\)(\/))/", "/http\:\/\/www\.google\.com\/images\/logo_sm\.gif/i", "/width=150 height=55/i", '/Google/');
+    $replace = array('\1http://www.google.com\2', '\1http://www.google.com\2', '\1http://www.google.com\2', '\1http://www.google.com\2', BASE_PATH.'/images/logo_sm.gif', "width=174 height=55", 'Dr. Google');
     echo preg_replace($find, $replace, file_get_contents('http://www.google.com/'. str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI'])));
   }
 
