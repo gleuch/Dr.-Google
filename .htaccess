@@ -1,7 +1,11 @@
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} -f [OR]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule ^(.+) - [PT,L]
+
+	RewriteRule ^(.*) index.php
+
+	#RewriteCond %{HTTP:Authorization}  !^$
+	#RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
 </IfModule>
