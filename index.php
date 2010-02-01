@@ -1,8 +1,31 @@
 <?php
 /*
 
-  Dr. Google
-  ----------------------------------------
+
+  _|_|_|                    _|_|_|                                _|            
+  _|    _|  _|  _|_|      _|          _|_|      _|_|      _|_|_|  _|    _|_|    
+  _|    _|  _|_|          _|  _|_|  _|    _|  _|    _|  _|    _|  _|  _|_|_|_|  
+  _|    _|  _|            _|    _|  _|    _|  _|    _|  _|    _|  _|  _|        
+  _|_|_|    _|    _|        _|_|_|    _|_|      _|_|      _|_|_|  _|    _|_|_|  
+                                                              _|                
+                                                          _|_|                  
+
+
+   A Google heath diagnosis engine.
+   by Greg Leuch <http://gleuch.com> for F.A.T. Lab <http://fffff.at>
+
+   http://fffff.at/introducing-dr-google
+
+-------------------------------------------------------------------------------
+
+
+   Feeling sick? Not sure what you've come down with? Let Google diagnose you!
+   Enter your symptoms into the search box, and press "I'm Feeling Icky" to
+   be diagnosed. Don't like your options? Go back and get a "Second Opinion".
+
+
+-------------------------------------------------------------------------------
+
 
 */
 
@@ -13,7 +36,8 @@ define('BASE_PATH', $basepath);
 
 $route = get_route();
 
-if ($route == '/search') {
+if ($route == 'search') {
+
   if (empty($_GET['q'])) {
     include('template/index.php');
 
@@ -75,7 +99,8 @@ function get_route() {
     }
 
   }
-  return $call;
+
+  return str_replace(BASE_PATH, '', $call);
 }
 
 function get_header() {include('template/_header.php');}
@@ -87,8 +112,7 @@ function pretty_format($str) {
   
   $str = preg_replace("/(\/wiki\/)([A-Z0-9\/\-\_\?\&\=]+)/i", BASE_PATH .'/search?btnI=1&q=\2', $str);
   $str = preg_replace("/(<sup.*<\/sup>)/i", '', $str);
-  
-  return $str;  
+  return $str;
 }
 
 
