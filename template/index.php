@@ -43,7 +43,7 @@
 <span id=body>
 <center>
 <br clear=all id=lgpd>
-<div align=left style="background:url(/intl/en/images/logo_plain.png) no-repeat;height:110px;width:347px;" title="Dr. Google" id=logo onload="window.lol&&lol()">
+<div align=left style="background:url(<?php echo BASE_PATH; ?>intl/en/images/logo_plain.png) no-repeat;height:110px;width:347px;" title="Dr. Google" id=logo onload="window.lol&&lol()">
 <div nowrap style="color:#666;font-size:16px;font-weight:bold;left:283px;position:relative;top:78px">e-Diagnosis</div>
 </div>
 <br>
