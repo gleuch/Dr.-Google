@@ -6,7 +6,10 @@
 
 */
 
-define('BASE_PATH', dirname(preg_replace('#('. $_SERVER['DOCUMENT_ROOT'] .')#', '', $_SERVER['SCRIPT_FILENAME'])));
+$basepath = dirname(preg_replace('#('. $_SERVER['DOCUMENT_ROOT'] .')#', '', $_SERVER['SCRIPT_FILENAME'])) .'/';
+$basepath = str_replace('//', '/', $basepath);
+
+define('BASE_PATH', $basepath);
 
 $route = get_route();
 
