@@ -51,17 +51,21 @@ if ($route == 'search') {
     //   exit;
     // 
     // } else {
-      $base = str_replace('+', '_', trim($_GET['q']));
-      if (is_file('tmp/'. $base .'.cache')) {
-        echo file_get_contents('tmp/'. $base .'.cache');
+      if (preg_match('/paranoia|stress|depression|copycat|cease|desist|marketplace|capitalize|goog|search/i', $_GET['q'])) {
+        include('cease-and-desist.php');
       } else {
-        include('diagnosis_list.php');
-        $diagnosis = $diagnosises[rand(0, count($diagnosises)-1)];
-        ob_start();
-        include('template/diagnosis.php');
-        $content = ob_get_contents();
-        file_put_contents('tmp/'. $base .'.cache', $content);
-        ob_end_flush();
+        $base = str_replace('+', '_', trim($_GET['q']));
+        if (is_file('tmp/'. $base .'.cache')) {
+          echo file_get_contents('tmp/'. $base .'.cache');
+        } else {
+          include('diagnosis_list.php');
+          $diagnosis = $diagnosises[rand(0, count($diagnosises)-1)];
+          ob_start();
+          include('template/diagnosis.php');
+          $content = ob_get_contents();
+          file_put_contents('tmp/'. $base .'.cache', $content);
+          ob_end_flush();
+        }
       }
     // }
 
@@ -72,7 +76,7 @@ if ($route == 'search') {
   }
 
 } else if ($route == '/advanced_search') {
-  echo '<h1>ADVANCED SEARCH</h1>';
+  echo '<h1>ADVANCED SEARCH</h1><p>YO CRAZY!</p>';
 
 } else if ($route == '/symptom_tools') {
   include('template/symptoms_tools.php');
